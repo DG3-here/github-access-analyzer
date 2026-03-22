@@ -1,50 +1,85 @@
-🚀 A Spring Boot backend project that analyzes GitHub repository access using REST APIs.
-
 # GitHub Access Analyzer
 
-## Overview
-This project is a Spring Boot application that integrates with the GitHub API to analyze repository access.
+A Spring Boot backend application that analyzes GitHub repository access using REST APIs.
 
-It fetches repositories of a user and maps which users have access to which repositories.
+---
+
+## Overview
+
+This project integrates with the GitHub API to analyze repository access.
+
+It fetches repositories of a given user and identifies contributors for each repository, creating a mapping of users to repositories they have contributed to.
+
+---
 
 ## Features
-- Fetch GitHub repositories
-- Retrieve collaborators for each repository
-- Generate user-to-repository mapping
-- REST API endpoint for access report
-- Error handling for API failures and permission issues
+
+- Fetch GitHub repositories of a user  
+- Retrieve contributors for each repository  
+- Generate user-to-repository mapping  
+- REST API endpoint for access report  
+- Handles authentication errors and API failures  
+- Removes duplicate entries for clean output  
+
+---
 
 ## API Endpoint
-GET http://localhost:8080/access-report
+
+GET http://localhost:8080/api/github/access-report?org={username}
+
+Example:  
+http://localhost:8080/api/github/access-report?org=DG3-here
+
+---
 
 ## Setup Instructions
 
-1. Clone the repository
-2. Open in IntelliJ IDEA
-3. Add your GitHub token in:
-   src/main/resources/application.properties
+1. Clone the repository  
+2. Open in IntelliJ IDEA  
+3. Add your GitHub token in:  
+   src/main/resources/application.properties  
 
-   github.token=YOUR_TOKEN
-   github.org=YOUR_USERNAME
+   github.token=YOUR_TOKEN  
 
-4. Run the application
+4. Run the application  
+
+---
 
 ## Sample Output
-{}
 
-## Important Note
-GitHub restricts collaborator access for personal repositories.  
-Due to this, the API may return an empty result.
+{
+  "Divyansh Garg": ["DG3-here", "github-access-analyzer"],
+  "DG3-here": ["Early-Diabetes-Detection", "Law-Connect", "Career-Craft", "github-access-analyzer", "Share-N-Care"]
+}
 
-This has been handled gracefully using exception handling to ensure system stability.
+---
+
+## Important Notes
+
+- GitHub restricts collaborator access for personal repositories  
+- Contributors API is used instead to fetch access data  
+- Invalid or expired tokens may result in authentication errors (401 Unauthorized)  
+
+---
 
 ## Tech Stack
-- Java
-- Spring Boot
-- GitHub REST API
+
+- Java  
+- Spring Boot  
+- GitHub REST API  
+- Maven  
+
+---
 
 ## Future Improvements
-- Pagination support for large repositories
-- Parallel API calls for performance optimization
-- Caching for faster response
-- Handling GitHub rate limits
+
+- Pagination support for large repositories  
+- Parallel API calls for better performance  
+- Caching for faster response  
+- Handling GitHub API rate limits  
+
+---
+
+## Author
+
+Divyansh Garg
