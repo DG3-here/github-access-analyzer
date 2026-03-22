@@ -1,3 +1,5 @@
+🚀 A Spring Boot backend project that analyzes GitHub repository access using REST APIs.
+
 # GitHub Access Analyzer
 
 ## Overview
